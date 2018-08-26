@@ -17,18 +17,18 @@ void loop() {
     // ントローラーの角度を読み取る
     String return_csv;
     for (size_t i = 0; i < axis_num; i++) {
-      int analog_in = analogRead(i);
+      String analog_in = String(analogRead(i));
 
       // 送信するCSVを作成する
       if (return_csv == ""){
         return_csv = analog_in;
       }else{
-        return_csv = ","+analog_in;
+        return_csv += ","+analog_in;
       }
     }
 
     // CSV形式のコントローラ角度を各関節に分解する
-    Serial.print(return_csv);
+    Serial.println(return_csv);
 
     delay(100);
 }
